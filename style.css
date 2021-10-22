@@ -1,3 +1,6 @@
+body {
+    background-color: rgb(160, 194, 196);
+}
 .form {
     width: 100%;
     display: flex;
@@ -7,4 +10,37 @@
 
 .forminput {
     display: inline;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+#card{
+    width: 500px;
+    padding: 1em;
+    border: 3px solid black;
+    border-radius: 2%;
+    background-color: rgb(163, 231, 233);
+    text-align: center;
+}
+
+.cityContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.cityContainer img {
+    margin-left: 3em;
+}
+
+.innerCityContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
