@@ -151,18 +151,22 @@ function displayCities(){
     }).join();
     if(this.value == "") suggestions.style = 'display: none'
     else {
-        suggestions.style = 'display: inline'
+        suggestions.style = 'display: inline';
     }
     suggestions.innerHTML = html;
+    const city = document.querySelector('.name');
+    city.addEventListener('click', fetchdataByCity)
+
 }
+
 searchInput.addEventListener("change", displayCities);
 searchInput.addEventListener("keyup", displayCities);
 
 
 async function fetchdataByCity(e) {
     e.preventDefault();
-    const city = document.querySelector('.name').value;
-    await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+    
+    await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}`)
         .then(response => response.json())
         .then(data => createPage(data))
     document.getElementById('zipcode').value = '';
