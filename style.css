@@ -62,3 +62,30 @@ body {
     align-items: center;
 
 }
+.search{
+    margin-right: 3em;
+}
+  .suggestions {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow:visible;
+    justify-content: space-between;
+  }
+  
+  .suggestions li {
+    background: white;
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-transform: capitalize;
+    cursor: pointer;
+    z-index: 100;
+    position: fixed;
+  }
+  

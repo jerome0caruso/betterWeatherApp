@@ -121,3 +121,49 @@ function getFiveDay(data) {
         `
     }
 }
+
+// ------
+
+const jsonlist = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+const searchInput = document.querySelector(".search");
+const suggestions = document.querySelector(".suggestions");
+const cities = [];
+fetch(jsonlist)
+    .then(response => response.json())
+    .then(data => cities.push(...data));
+
+function findMatch(wtm, cities) {
+    let regex = new RegExp(wtm, 'gi')
+    return returnCities = cities.filter(place => {
+        return place.city.match(regex);
+    }).slice(0,1)
+
+}
+function displayCities(){
+    const matchArray  = findMatch(this.value, cities);
+    const html = matchArray.map(place => {
+        return `
+        <li>
+            <span class="name">${place.city}</span>
+        </li>
+        `
+    }).join();
+    if(this.value == "") suggestions.style = 'display: none'
+    else {
+        suggestions.style = 'display: inline'
+    }
+    suggestions.innerHTML = html;
+}
+searchInput.addEventListener("change", displayCities);
+searchInput.addEventListener("keyup", displayCities);
+
+
+async function fetchdataByCity(e) {
+    e.preventDefault();
+    const city = document.querySelector('.name').value;
+    await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+        .then(response => response.json())
+        .then(data => createPage(data))
+    document.getElementById('zipcode').value = '';
+}
